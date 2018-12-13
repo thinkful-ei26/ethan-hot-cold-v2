@@ -6,7 +6,7 @@ import InfoModal from './info-modal';
 import './header.css';
 
 export default function Header(props) {
-    console.log(props);
+    // console.log(props);
     if(props.rules === true){
         return <InfoModal handleWhatToggle={props.handleWhatToggle}/>
     }

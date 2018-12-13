@@ -33,7 +33,7 @@ export default class Game extends React.Component {
             alert('Has to be a number');
         } else {  
             const newGuessArray = [...this.state.guesses, guess];
-            const newCount = this.state.count + 1;
+            // const newCount = this.state.count + 1;
             let newFeedback;
             if (this.state.truth === guess){
                 newFeedback = 'winner winner chicken dinner';
@@ -53,7 +53,7 @@ export default class Game extends React.Component {
         
             this.setState({
                 guesses: newGuessArray,
-                count: newCount,
+                count: newGuessArray.length,
                 feedback: newFeedback
             });
         }
