@@ -12,7 +12,7 @@ export default function Header(props) {
     }
     return (
         <header>
-            <TopNav handleWhatToggle={props.handleWhatToggle}/>
+            <TopNav handleWhatToggle={props.handleWhatToggle} handleNewGame={props.handleNewGame} />
             {/* <InfoModal /> */}
             <h1>HOT or COLD</h1>
         </header>
