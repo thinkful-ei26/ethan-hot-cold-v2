@@ -16,15 +16,11 @@ export default class Game extends React.Component {
             count: 0,
             truth: Math.ceil(Math.random() * 100)    
         }
-        
+        this.initialState = this.state;
         this.handleWhatToggle = this.handleWhatToggle.bind(this);
         this.handleGuessEntry = this.handleGuessEntry.bind(this);
         this.handleNewGame = this.handleNewGame.bind(this);
     }
-
-    // componentWillMount() {
-    //     this.initialState = this.state
-    // }
     
     handleWhatToggle(){
         this.setState({
@@ -33,51 +29,41 @@ export default class Game extends React.Component {
     }
 
     handleGuessEntry(guess){
-        const newGuessArray = [...this.state.guesses, guess];
-        const newCount = this.state.count + 1;
-        console.log(this.state.truth);
-        let newFeedback;
-        if (Math.abs(this.state.truth - guess) < 5){
-            console.log(this.state.truth - guess);
-            newFeedback = 'SCORCHING';
-        } else if (Math.abs(this.state.truth - guess) < 10){
-            newFeedback = 'bien caliente';
-            console.log(this.state.truth - guess);
-        } else if (Math.abs(this.state.truth - guess) < 15){
-            newFeedback = 'hottish';
-            console.log(this.state.truth - guess);
-        } else if (Math.abs(this.state.truth - guess) < 25){
-            newFeedback = 'kinda warm i guess?';
-            console.log(this.state.truth - guess);
-        } else if (Math.abs(this.state.truth - guess) < 35){
-            newFeedback = 'cold';
-            console.log(this.state.truth - guess);
-        } else {
-            newFeedback = 'Just embarassing';
-            console.log(this.state.truth - guess);
+        if (isNaN(guess)){
+            alert('Has to be a number');
+        } else {  
+            const newGuessArray = [...this.state.guesses, guess];
+            const newCount = this.state.count + 1;
+            let newFeedback;
+            if (this.state.truth === guess){
+                newFeedback = 'winner winner chicken dinner';
+            } else if (Math.abs(this.state.truth - guess) < 5){
+                newFeedback = 'SCORCHING';
+            } else if (Math.abs(this.state.truth - guess) < 10){
+                newFeedback = 'bien caliente';
+            } else if (Math.abs(this.state.truth - guess) < 15){
+                newFeedback = 'hottish';
+            } else if (Math.abs(this.state.truth - guess) < 25){
+                newFeedback = 'kinda warm i guess?';
+            } else if (Math.abs(this.state.truth - guess) < 35){
+                newFeedback = 'cold';
+            } else {
+                newFeedback = 'Just embarassing';
+            }
+        
+            this.setState({
+                guesses: newGuessArray,
+                count: newCount,
+                feedback: newFeedback
+            });
         }
-    
-        this.setState({
-            guesses: newGuessArray,
-            count: newCount,
-            feedback: newFeedback
-        });
     }
     
     handleNewGame(){
-        this.setState({
-            rules: false,
-            feedback: "Make your guess!",
-            guesses: [],
-            count: 0,
-            truth: Math.ceil(Math.random() * 100)    
-        });
+        this.setState(this.initialState);
     }
     
     render(){
-        // if(this.state.rules){
-        //     return <InfoModal />
-        // }
         return (
             <div>
                 <Header rules={this.state.rules} handleWhatToggle={this.handleWhatToggle} handleNewGame={this.handleNewGame} />

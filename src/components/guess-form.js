@@ -3,12 +3,22 @@ import React from 'react';
 import './guess-form.css';
 
 export default function GuessForm(props) {
-    console.log(props);
+    // console.log(props);
     const handleGuessSubmit = e => {
         e.preventDefault();
         const data = new FormData(e.target);
         e.target.userGuess.value = '';
-        return props.handleGuessEntry(data.get('userGuess'));
+        // let entry = e.target.userGuess;
+        // console.log(data);
+        // const entry = props.handleGuessEntry(Number(data.get('userGuess')));
+        // console.log(entry);
+        // if (entry === undefined) {
+        //     alert('Has to be a number');
+        // } else {
+        //     return entry;
+        // }
+        // // console.log(props.handleGuessEntry(Number(data.get('userGuess'))));
+        return props.handleGuessEntry(Number(data.get('userGuess')));
     }
     return (
         <form onSubmit={handleGuessSubmit}>
