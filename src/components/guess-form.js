@@ -8,17 +8,14 @@ export default function GuessForm(props) {
         e.preventDefault();
         const data = new FormData(e.target);
         e.target.userGuess.value = '';
-        // let entry = e.target.userGuess;
-        // console.log(data);
-        // const entry = props.handleGuessEntry(Number(data.get('userGuess')));
-        // console.log(entry);
-        // if (entry === undefined) {
-        //     alert('Has to be a number');
-        // } else {
-        //     return entry;
-        // }
-        // // console.log(props.handleGuessEntry(Number(data.get('userGuess'))));
-        return props.handleGuessEntry(Number(data.get('userGuess')));
+        const guess = Number(data.get('userGuess'));
+        if (isNaN(guess)){
+            alert('Has to be a number');
+        } else {
+            return props.handleGuessEntry(guess);
+        }
+        // console.log(props.handleGuessEntry(Number(data.get('userGuess'))));
+        
     }
     return (
         <form onSubmit={handleGuessSubmit}>

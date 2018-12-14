@@ -29,34 +29,30 @@ export default class Game extends React.Component {
     }
 
     handleGuessEntry(guess){
-        if (isNaN(guess)){
-            alert('Has to be a number');
-        } else {  
-            const newGuessArray = [...this.state.guesses, guess];
-            // const newCount = this.state.count + 1;
-            let newFeedback;
-            if (this.state.truth === guess){
-                newFeedback = 'winner winner chicken dinner';
-            } else if (Math.abs(this.state.truth - guess) < 5){
-                newFeedback = 'SCORCHING';
-            } else if (Math.abs(this.state.truth - guess) < 10){
-                newFeedback = 'bien caliente';
-            } else if (Math.abs(this.state.truth - guess) < 15){
-                newFeedback = 'hottish';
-            } else if (Math.abs(this.state.truth - guess) < 25){
-                newFeedback = 'kinda warm i guess?';
-            } else if (Math.abs(this.state.truth - guess) < 35){
-                newFeedback = 'cold';
-            } else {
-                newFeedback = 'Just embarassing';
-            }
-        
-            this.setState({
-                guesses: newGuessArray,
-                count: newGuessArray.length,
-                feedback: newFeedback
-            });
+        const newGuessArray = [...this.state.guesses, guess];
+        // const newCount = this.state.count + 1;
+        let newFeedback;
+        if (this.state.truth === guess){
+            newFeedback = 'winner winner chicken dinner';
+        } else if (Math.abs(this.state.truth - guess) < 5){
+            newFeedback = 'SCORCHING';
+        } else if (Math.abs(this.state.truth - guess) < 10){
+            newFeedback = 'bien caliente';
+        } else if (Math.abs(this.state.truth - guess) < 15){
+            newFeedback = 'hottish';
+        } else if (Math.abs(this.state.truth - guess) < 25){
+            newFeedback = 'kinda warm i guess?';
+        } else if (Math.abs(this.state.truth - guess) < 35){
+            newFeedback = 'cold';
+        } else {
+            newFeedback = 'Just embarassing';
         }
+    
+        this.setState({
+            guesses: newGuessArray,
+            count: newGuessArray.length,
+            feedback: newFeedback
+        });
     }
     
     handleNewGame(){
