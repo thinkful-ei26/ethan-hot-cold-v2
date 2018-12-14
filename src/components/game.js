@@ -16,7 +16,7 @@ export default class Game extends React.Component {
             count: 0,
             truth: Math.ceil(Math.random() * 100)    
         }
-        this.initialState = this.state;
+        // this.initialState = this.state;
         this.handleWhatToggle = this.handleWhatToggle.bind(this);
         this.handleGuessEntry = this.handleGuessEntry.bind(this);
         this.handleNewGame = this.handleNewGame.bind(this);
@@ -56,7 +56,13 @@ export default class Game extends React.Component {
     }
     
     handleNewGame(){
-        this.setState(this.initialState);
+        this.setState({
+            rules: false,
+            feedback: "Make your guess!",
+            guesses: [],
+            count: 0,
+            truth: Math.ceil(Math.random() * 100)    
+        });
     }
     
     render(){

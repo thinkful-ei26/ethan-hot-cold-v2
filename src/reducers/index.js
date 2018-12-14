@@ -10,9 +10,10 @@ const initialState = {
 
 export const gameReducer = (state=initialState, action) => {
   if (action.type === actions.ENTER_GUESS) {
+    const newGuessArray = [...state.guesses, action.guess];
     let newFeedback;
-    let difference = Math.abs(this.state.truth - guess);
-        if (state.truth === guess){
+    let difference = Math.abs(state.truth - action.guess);
+        if (state.truth === action.guess){
             newFeedback = 'winner winner chicken dinner';
         } else if (difference < 5){
             newFeedback = 'SCORCHING';
@@ -27,18 +28,27 @@ export const gameReducer = (state=initialState, action) => {
         } else {
             newFeedback = 'Just embarassing';
         }
-    Object.assign({}, state, {
-      guesses: [...state.guesses, action.guess],
-      count: (state.count + 1).length,
+    return Object.assign({}, state, {
+      guesses: newGuessArray,
+      count: newGuessArray.length,
       feedback: newFeedback
-    })
+    });
   }
   else if(action.type === actions.NEW_GAME){
-    Object.assign({}, state, initialState)
+    return Object.assign({}, initialState,  
+      {
+        truth: Math.ceil(Math.random() * 100)    
+      }
+    );
   }
   else if(action.type === actions.OPEN_WHAT || action.type === actions.CLOSE_WHAT){
-    Object.assign({}, state, {
+    return Object.assign({}, state, {
       rules: !state.rules
-    })
+    });
   }
+  // else {
+  //   return Object.assign({}, state, initialState);
+  // }
+  
+  return state;
 }
