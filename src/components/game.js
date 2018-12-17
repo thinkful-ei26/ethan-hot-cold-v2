@@ -4,9 +4,10 @@ import Header from './header';
 import GuessSection from './guess-section';
 import GuessCount  from './guess-count';
 import GuessList from './guess-list';
+import {connect} from 'react-redux';
 // import InfoModal from './info-modal';
 
-export default class Game extends React.Component {
+class Game extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -70,10 +71,20 @@ export default class Game extends React.Component {
             <div>
                 <Header rules={this.state.rules} handleWhatToggle={this.handleWhatToggle} handleNewGame={this.handleNewGame} />
                 <GuessSection feedback={this.state.feedback} handleGuessEntry={this.handleGuessEntry}/>
-                <GuessCount count={this.state.count} />
+                <GuessCount />
                 <GuessList guesses={this.state.guesses} />
             </div>
         );
     }
 }
+
+export const mapStateToProps = state => ({
+    rules: state.rules,
+    feedback: state.feedback,
+    guesses: state.guesses,
+    count: state.count,
+    truth: state.truth
+});
+
+export default connect(mapStateToProps)(Game);
 
