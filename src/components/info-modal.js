@@ -1,8 +1,10 @@
 import React from 'react';
 
 import './info-modal.css';
+import {connect} from 'react-redux';
+import {closeWhat} from '../actions';
 
-export default function InfoModal(props) {
+export function InfoModal(props) {
     console.log(props);
     return (
         <div className="overlay" id="modal">
@@ -16,9 +18,11 @@ export default function InfoModal(props) {
                         <li>3. You will <strong>get feedback</strong> on how close ("hot") or far ("cold") your guess is.</li>
                     </ul>
                     <p>So, Are you ready?</p>
-                    <a className="close" href="#" onClick={props.handleWhatToggle}>Got It!</a>
+                    <a className="close" href="#" onClick={() => props.dispatch(closeWhat())}>Got It!</a>
                 </div>
             </div>
         </div>
     );
 }
+
+export default connect()(InfoModal)

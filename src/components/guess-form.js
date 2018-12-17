@@ -1,18 +1,23 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import './guess-form.css';
+import {enterGuess} from '../actions';
 
-export default function GuessForm(props) {
-    // console.log(props);
+export function GuessForm(props) {
+    console.log(props);
     const handleGuessSubmit = e => {
         e.preventDefault();
-        const data = new FormData(e.target);
+        // const data = new FormData(e.target);
+        const inputValue = e.target.userGuess.value;
+        console.log(inputValue);
         e.target.userGuess.value = '';
-        const guess = Number(data.get('userGuess'));
-        if (isNaN(guess)){
+        // const guess = Number(data.get('userGuess'));
+        const numberInputValue = Number(inputValue);
+        if (isNaN(numberInputValue)){
             alert('Has to be a number');
         } else {
-            return props.handleGuessEntry(guess);
+            props.dispatch(enterGuess(numberInputValue));
         }
         // console.log(props.handleGuessEntry(Number(data.get('userGuess'))));
         
@@ -26,4 +31,11 @@ export default function GuessForm(props) {
         </form>
     );
 };
+
+// export const mapStateToProps = state => ({
+//     feedback: state.feedback,
+//     guesses: state.guesses,
+// });
+
+export default connect()(GuessForm);
 

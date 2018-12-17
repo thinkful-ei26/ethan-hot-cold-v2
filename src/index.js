@@ -9,7 +9,7 @@ import Game from './components/game';
 
 import store from './store';
 
-import { enterGuess, newGame, openWhat, closeWhat } from './actions/index';
+// import { enterGuess, newGame, openWhat, closeWhat } from './actions/index';
 
 ReactDOM.render(
     <Provider store={store}>
