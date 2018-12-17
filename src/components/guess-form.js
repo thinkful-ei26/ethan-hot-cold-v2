@@ -8,17 +8,15 @@ export function GuessForm(props) {
     console.log(props);
     const handleGuessSubmit = e => {
         e.preventDefault();
-        // const data = new FormData(e.target);
-        const inputValue = e.target.userGuess.value;
-        console.log(inputValue);
+        const inputValue = Number(e.target.userGuess.value);
         e.target.userGuess.value = '';
-        // const guess = Number(data.get('userGuess'));
-        const numberInputValue = Number(inputValue);
-        if (isNaN(numberInputValue)){
+        if (isNaN(inputValue)){
             alert('Has to be a number');
         } else {
-            props.dispatch(enterGuess(numberInputValue));
+            props.dispatch(enterGuess(inputValue));
         }
+        // const data = new FormData(e.target);
+        // const guess = Number(data.get('userGuess'));
         // console.log(props.handleGuessEntry(Number(data.get('userGuess'))));
         
     }
@@ -31,11 +29,6 @@ export function GuessForm(props) {
         </form>
     );
 };
-
-// export const mapStateToProps = state => ({
-//     feedback: state.feedback,
-//     guesses: state.guesses,
-// });
 
 export default connect()(GuessForm);
 

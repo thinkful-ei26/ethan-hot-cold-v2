@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import './guess-count.css';
 
 function GuessCount(props) {
-    console.log(props);
+    // console.log(props);
     if(props.count){
         return (
             <p>

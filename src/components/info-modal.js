@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {closeWhat} from '../actions';
 
 export function InfoModal(props) {
-    console.log(props);
+    // console.log(props);
     return (
         <div className="overlay" id="modal">
             <div className="content">
